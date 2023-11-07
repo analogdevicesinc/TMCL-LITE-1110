@@ -1,29 +1,12 @@
 /*******************************************************************************
-  Project: stepRocker Mini-TMCL (for stepRocker V2.2)
-
-  Module:  TMC262.h
-           Definitions of TMC262 library functions
-
-   Copyright (C) 2016 TRINAMIC Motion Control GmbH & Co KG
-                      Waterloohain 5
-                      D - 22769 Hamburg, Germany
-                      http://www.trinamic.com/
-
-   This program is free software; you can redistribute it and/or modify it
-   freely.
-
-   This program is distributed "as is" in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.
+* Copyright © 2016 TRINAMIC Motion Control GmbH & Co. KG
+* (now owned by Analog Devices Inc.),
+*
+* Copyright © 2023 Analog Devices Inc. All Rights Reserved. This software is
+* proprietary & confidential to Analog Devices, Inc. and its licensors.
 *******************************************************************************/
 
 /**
-  \file TMC262.h
-  \author Trinamic Motion Control GmbH & Co KG
-  \version 2.20
-
-  \brief TMC262 library
-
   This file contains all macro and function definitions of the TMC26x library.
 */
 
@@ -44,7 +27,7 @@
 #define TMC262_FLAG_OT    0x02
 #define TMC262_FLAG_SG    0x01
 
-//Funktionen f�r den Zugriff auf den TMC262
+//Funktionen für den Zugriff auf den TMC262
 void InitMotorDrivers(void);
 void Set262StepDirMStepRes(UCHAR Which262, UCHAR MicrostepResolution);
 void Set262StepDirInterpolation(UCHAR Which262, UCHAR Interpolation);

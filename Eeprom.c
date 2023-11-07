@@ -1,29 +1,12 @@
 /*******************************************************************************
-  Project: stepRocker Mini-TMCL (for stepRocker V2.2)
-
-  Module:  Eeprom.c
-           Access to the onboard EEPROM (AT25128)
-
-   Copyright (C) 2016 TRINAMIC Motion Control GmbH & Co KG
-                      Waterloohain 5
-                      D - 22769 Hamburg, Germany
-                      http://www.trinamic.com/
-
-   This program is free software; you can redistribute it and/or modify it
-   freely.
-
-   This program is distributed "as is" in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.
+* Copyright Â© 2016 TRINAMIC Motion Control GmbH & Co. KG
+* (now owned by Analog Devices Inc.),
+*
+* Copyright Â© 2023 Analog Devices Inc. All Rights Reserved. This software is
+* proprietary & confidential to Analog Devices, Inc. and its licensors.
 *******************************************************************************/
 
 /**
-  \file Eeprom.c
-  \author Trinamic Motion Control GmbH & Co KG
-  \version 2.20
-
-  \brief EEPROM access functions
-
   This file contains EEPROM access functions.
 */
 
@@ -99,14 +82,14 @@ void WriteEepromBlock(UINT Address, UCHAR *Block, UINT Size)
   //Eigentliches Schreiben der Daten
   for(i=0; i<Size; i++)
   {
-    //Adresse mitzählen und bei Überlauf der untersten sechs Bits das EEPROM deselektieren
+    //Adresse mitzÃ¤hlen und bei Ãœberlauf der untersten sechs Bits das EEPROM deselektieren
     //und neuen Write-Befehl senden (bzw. beim letzten Datenbyte einfach nur EEPROM
     //deselektieren).
     //Dies ist erforderlich, da beim Beschreiben im 25128 nur die untersten sechs Bits der
-    //Adresse hochgezählt werden (anders als beim Lesen).
+    //Adresse hochgezÃ¤hlt werden (anders als beim Lesen).
     Address++;
     ReadWriteSPI(SPI_DEV_EEPROM, *(Block+i), (Address & 0x0000003f)==0 || i==Size-1);
-    if((Address & 0x0000003f)==0 && i<Size-1)  //Adressbits übergelaufen, aber noch Bytes zu schreiben?
+    if((Address & 0x0000003f)==0 && i<Size-1)  //Adressbits Ã¼bergelaufen, aber noch Bytes zu schreiben?
     {
       //Warte bis Schreibvorgang beendet
       do
@@ -121,7 +104,7 @@ void WriteEepromBlock(UINT Address, UCHAR *Block, UINT Size)
         ReadWriteSPI(SPI_DEV_EEPROM, 0x05, FALSE);  //Befehl "Get Status"
       } while((ReadWriteSPI(SPI_DEV_EEPROM, 0x00, TRUE) & 0x02)==0x00);  //Warte bis "Write Enable"-Bit gesetzt
 
-      //Neuer "Write"-Befehl (mit der nächsten Adresse)
+      //Neuer "Write"-Befehl (mit der nÃ¤chsten Adresse)
       ReadWriteSPI(SPI_DEV_EEPROM, 0x02, FALSE); //Befehl "Write"
       ReadWriteSPI(SPI_DEV_EEPROM, Address >> 8, FALSE);
       ReadWriteSPI(SPI_DEV_EEPROM, Address & 0xff, FALSE);

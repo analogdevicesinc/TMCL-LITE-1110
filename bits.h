@@ -1,29 +1,12 @@
 /*******************************************************************************
-  Project: stepRocker Mini-TMCL (for stepRocker V2.2)
-
-  Module:  bits.h
-           Bit definitions
-
-   Copyright (C) 2016 TRINAMIC Motion Control GmbH & Co KG
-                      Sternstra�e 67
-                      D - 20357 Hamburg, Germany
-                      http://www.trinamic.com/
-
-   This program is free software; you can redistribute it and/or modify it
-   freely.
-
-   This program is distributed "as is" in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.
+* Copyright © 2016 TRINAMIC Motion Control GmbH & Co. KG
+* (now owned by Analog Devices Inc.),
+*
+* Copyright © 2023 Analog Devices Inc. All Rights Reserved. This software is
+* proprietary & confidential to Analog Devices, Inc. and its licensors.
 *******************************************************************************/
 
 /**
-  \file bits.h
-  \author Trinamic Motion Control GmbH & Co KG
-  \version 2.20
-
-  \brief Bit definitions.
-
   This file just contains some useful bit definitions.
 */
 

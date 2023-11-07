@@ -1,33 +1,15 @@
 /*******************************************************************************
-  Project: stepRocker Mini-TMCL (for stepRocker V2.2)
-
-  Module:  TMC262.c
-           TMC262 library
-
-   Copyright (C) 2016 TRINAMIC Motion Control GmbH & Co KG
-                      Waterloohain 5
-                      D - 22769 Hamburg, Germany
-                      http://www.trinamic.com/
-
-   This program is free software; you can redistribute it and/or modify it
-   freely.
-
-   This program is distributed "as is" in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.
+* Copyright © 2016 TRINAMIC Motion Control GmbH & Co. KG
+* (now owned by Analog Devices Inc.),
+*
+* Copyright © 2023 Analog Devices Inc. All Rights Reserved. This software is
+* proprietary & confidential to Analog Devices, Inc. and its licensors.
 *******************************************************************************/
 
 /**
-  \file TMC262.c
-  \author Trinamic Motion Control GmbH & Co KG
-  \version 2.20
-
-  \brief TMC262 Stepper motor driver functions
-
   This file provides all functions needed for easy
   access to the TMC262 stepper motor driver IC.
 */
-
 
 #include <stdlib.h>
 #if defined(MK20DX128)
@@ -1102,8 +1084,8 @@ UCHAR Get262DriverReadSelect(UCHAR Which262)
 ********************************************************************/
 void Read262State(UCHAR Which262, UCHAR *Phases, UCHAR *MStep, UINT *StallGuard, UCHAR *SmartEnergy, UCHAR *Flags)
 {
-  //Abwechselnd alle Datagrammtypen des TMC26x zum Auslesen der Zust�nde benutzen.
-  //So wird sichergestellt, da� alle Register immer mit den richtigen Werten beschrieben
+  //Abwechselnd alle Datagrammtypen des TMC26x zum Auslesen der Zustände benutzen.
+  //So wird sichergestellt, daß alle Register immer mit den richtigen Werten beschrieben
   //sind (falls es zwischendurch mal zu einem Reset des TMC26x kommen sollte).
   switch(ReadBackDatagram[Which262])
   {

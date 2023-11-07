@@ -1,29 +1,12 @@
 /*******************************************************************************
-  Project: stepRocker Mini-TMCL (for stepRocker V2.2)
-
-  Module:  SysControl.c
-           Motor monitoring (automatic current switching etc.)
-
-   Copyright (C) 2016 TRINAMIC Motion Control GmbH & Co KG
-                      Waterloohain 5
-                      D - 22769 Hamburg, Germany
-                      http://www.trinamic.com/
-
-   This program is free software; you can redistribute it and/or modify it
-   freely.
-
-   This program is distributed "as is" in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.
+* Copyright Â© 2016 TRINAMIC Motion Control GmbH & Co. KG
+* (now owned by Analog Devices Inc.),
+*
+* Copyright Â© 2023 Analog Devices Inc. All Rights Reserved. This software is
+* proprietary & confidential to Analog Devices, Inc. and its licensors.
 *******************************************************************************/
 
 /**
-  \file SysControl.c
-  \author Trinamic Motion Control GmbH & Co KG
-  \version 2.20
-
-  \brief Motor monitoring
-
   This file contains the SystemControl function which does all necessary motor
   monitoring tasks.
 */
@@ -86,7 +69,7 @@ void SystemControl(void)
     }
     else
     {
-      //Zusätzliche Stromabsenkung bei niedriger Geschwindigkeit
+      //ZusÃ¤tzliche Stromabsenkung bei niedriger Geschwindigkeit
       //(kann abgeschaltet werden indem man ThresholdSpeed auf 0 setzt).
       if(abs(Velocity)<CoolStepConfig[ActualAxis].ThresholdSpeed)
         SetMotorCurrent(ActualAxis, CoolStepConfig[ActualAxis].SlowRunCurrent);
@@ -97,7 +80,7 @@ void SystemControl(void)
       StandbyFlag[ActualAxis]=FALSE;
     }
 
-      //Geschwindigkeitsabhängiges Ein- und Ausschalten von CoolStep
+      //GeschwindigkeitsabhÃ¤ngiges Ein- und Ausschalten von CoolStep
       //(nicht wenn ThresholdSpeed==0)
       if(abs(Velocity)<CoolStepConfig[ActualAxis].ThresholdSpeed)
       {
@@ -110,14 +93,14 @@ void SystemControl(void)
       else
       {
         //CoolStep einschalten wenn nicht bereits eingeschaltet (auf den mit SAP 172 eingestellten Wert
-        //zurücksetzen - wenn dieser 0 ist bleibt CoolStep natürlich ausgeschaltet).
+        //zurÃ¼cksetzen - wenn dieser 0 ist bleibt CoolStep natÃ¼rlich ausgeschaltet).
         if(Get262SmartEnergyStallLevelMin(WHICH_262(ActualAxis))!=CoolStepConfig[ActualAxis].HysteresisStart)
         {
           Set262SmartEnergyStallLevelMin(WHICH_262(ActualAxis), CoolStepConfig[ActualAxis].HysteresisStart);
         }
       }
 
-    //Überwachung der Treiber
+    //Ãœberwachung der Treiber
     Read262State(WHICH_262(ActualAxis), NULL, NULL, &StallLevel[ActualAxis], &SmartEnergy[ActualAxis], &DriverFlags[ActualAxis]);
 
     //Stop bei Stall
@@ -147,7 +130,7 @@ void SystemControl(void)
     }
     else FreewheelingTimer[ActualAxis]=GetSysTimer();
 
-    //Nächste Achse
+    //NÃ¤chste Achse
     ActualAxis++;
     if(ActualAxis>=N_O_MOTORS) ActualAxis=0;
 

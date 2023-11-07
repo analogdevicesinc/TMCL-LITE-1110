@@ -1,29 +1,12 @@
 /*******************************************************************************
-  Project: stepRocker Mini-TMCL (for stepRocker V2.2)
-
-  Module:  stepRocker.c
-           Main program of the stepRocker open source Mini-TMCL
-
-   Copyright (C) 2016 TRINAMIC Motion Control GmbH & Co KG
-                      Waterloohain 5
-                      D - 22769 Hamburg, Germany
-                      http://www.trinamic.com/
-
-   This program is free software; you can redistribute it and/or modify it
-   freely.
-
-   This program is distributed "as is" in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-   or FITNESS FOR A PARTICULAR PURPOSE.
+* Copyright Â© 2016 TRINAMIC Motion Control GmbH & Co. KG
+* (now owned by Analog Devices Inc.),
+*
+* Copyright Â© 2023 Analog Devices Inc. All Rights Reserved. This software is
+* proprietary & confidential to Analog Devices, Inc. and its licensors.
 *******************************************************************************/
 
 /**
-  \file stepRocker.c
-  \author Trinamic Motion Control GmbH & Co KG
-  \version 2.20
-
-  \brief Main file
-
   This file contains the main() function.
 */
 
@@ -125,7 +108,7 @@ void InitClocks(void)
   /* OSC_CR: ERCLKEN=1,??=0,EREFSTEN=0,??=0,SC2P=0,SC4P=0,SC8P=0,SC16P=0 */
   OSC_CR = OSC_CR_ERCLKEN_MASK;
   /* MCG_C7: OSCSEL=0 */
-//  MCG_C7 &= (uint8_t)~(uint8_t)(MCG_C7_OSCSEL_MASK);      //***TEST_OK: Kann zum Absturz führen und ist eigentlich auch nicht nötig.
+//  MCG_C7 &= (uint8_t)~(uint8_t)(MCG_C7_OSCSEL_MASK);      //***TEST_OK: Kann zum Absturz fÃ¼hren und ist eigentlich auch nicht nÃ¶tig.
   /* MCG_C1: CLKS=2,FRDIV=4,IREFS=0,IRCLKEN=1,IREFSTEN=0 */
   MCG_C1 = (MCG_C1_CLKS(0x02) | MCG_C1_FRDIV(0x04) | MCG_C1_IRCLKEN_MASK);
   /* MCG_C4: DMX32=0,DRST_DRS=0 */
@@ -165,7 +148,7 @@ void LowLevelInit(void)
 //               )) | (uint32_t)(
 //                PORT_PCR_MUX(0x07)
 //               ));
-        /* Initialization of the RCM module */    //***TEST_OK: Kann je nach Beschaltung des Reset-Pins zum Absturz führen
+        /* Initialization of the RCM module */    //***TEST_OK: Kann je nach Beschaltung des Reset-Pins zum Absturz fÃ¼hren
   /* RCM_RPFW: RSTFLTSEL=0 */
   RCM_RPFW &= (uint8_t)~(uint8_t)(RCM_RPFW_RSTFLTSEL(0x1F));
   /* RCM_RPFC: RSTFLTSS=0,RSTFLTSRW=0 */
